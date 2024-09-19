@@ -23,8 +23,8 @@ Installing Dependencies	Building Teamserver
 Building Havoc	Successful Build
 ![2024-09-19_16-18](https://github.com/user-attachments/assets/6f2960e2-8894-4d83-bcfd-f5d634c7b1e1) ![2024-09-19_16-45](https://github.com/user-attachments/assets/edb6ce67-3ba6-46b4-85fc-71298d1b1769)
 Running Havoc Interface	Final Setup
-![2024-09-19_16-46](https://github.com/user-attachments/assets/72b3fe09-6b60-45ca-a559-400de340b94a) ![2024-09-19_16-48](https://github.com/user-attachments/assets/c257fa4c-4d6e-4f98-b3ff-e79b312fcb7d)
 
+![2024-09-19_16-46](https://github.com/user-attachments/assets/72b3fe09-6b60-45ca-a559-400de340b94a) ![2024-09-19_16-49](https://github.com/user-attachments/assets/879b0b04-8b62-4e65-b506-a13ceabba2e9)
 Usage
 
  After installation, close the terminal and reopen it to ensure all paths and dependencies are set.
