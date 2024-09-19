@@ -1,4 +1,4 @@
-![2024-09-19_15-51](https://github.com/user-attachments/assets/6cf63707-2ba4-49e8-a471-b7fae6f6bde6)# Havoc for ARM
+# Havoc for ARM
 
 An automated bash script for installing Havoc on Kali ARM devices.
 Overview
@@ -6,55 +6,14 @@ Overview
 This script simplifies the installation of Havoc on Kali ARM, ensuring that all necessary dependencies are installed and the environment is set up properly. This is perfect for users running Kali Linux on ARM-based devices who want a quick, reliable way to get Havoc up and running.
 
 
-Features
 
-    Automated Installation: The script handles all dependencies and environment setup, ensuring a seamless installation experience.
-    Optimized for ARM: Designed specifically for Kali ARM devices, ensuring compatibility and efficiency.
-    Dependency Management: Automatically installs required Go dependencies and compilers.
-    Smart Build Handling: Checks if the necessary binaries already exist, skipping redundant build steps.
-
-Screenshots
-
-Below are some screenshots showcasing the installation process and the script in action.
-Havoc for ARM
-
-An automated bash script for installing Havoc on Kali ARM devices.
-Overview
-
-This script simplifies the installation of Havoc on Kali ARM, ensuring that all necessary dependencies are installed and the environment is set up properly. This is perfect for users running Kali Linux on ARM-based devices who want a quick, reliable way to get Havoc up and running.
-Installation Instructions
-Step 1: Clone the Havoc Repository
-
-bash
-
-git clone https://github.com/HavocFramework/Havoc.git
-cd Havoc
-
-Step 2: Install Havoc Go Dependencies
-
-Navigate to the teamserver directory and download the required Go modules:
-
-bash
-
-cd teamserver
-go mod download golang.org/x/sys
-go mod download github.com/ugorji/go
-cd ..
-
-Step 3: Install Musl Compiler and Build Binary
-
-From the Havoc root directory, install the necessary compiler and build the binaries:
-
-bash
-
-make ts-build
 
 Features
 
-    Automated Installation: The script handles all dependencies and environment setup, ensuring a seamless installation experience.
-    Optimized for ARM: Designed specifically for Kali ARM devices, ensuring compatibility and efficiency.
-    Dependency Management: Automatically installs required Go dependencies and compilers.
-    Smart Build Handling: Checks if the necessary binaries already exist, skipping redundant build steps.
+Automated Installation: The script handles all dependencies and environment setup, ensuring a seamless installation experience.
+Optimized for ARM: Designed specifically for Kali ARM devices, ensuring compatibility and efficiency.
+Dependency Management: Automatically installs required Go dependencies and compilers.
+Smart Build Handling: Checks if the necessary binaries already exist, skipping redundant build steps.
 
 Screenshots
 
@@ -68,22 +27,12 @@ Running Havoc Interface	Final Setup
 
 Usage
 
-    After installation, close the terminal and reopen it to ensure all paths and dependencies are set.
-    To start using Havoc, navigate to the Havoc directory and follow the instructions in the official ![documentation](https://havocframework.com/docs/installation). 
+ After installation, close the terminal and reopen it to ensure all paths and dependencies are set.
+   To start using Havoc, navigate to the Havoc directory and follow the instructions in the official ![documentation](https://havocframework.com/docs/installation). 
 
 Contributing
 
 Feel free to contribute to this project by opening issues or submitting pull requests. Contributions are welcome, especially around improving compatibility with other ARM distributions or adding additional automation features.
-Installing Dependencies	Building Teamserver
-2024-09-19_15-51	2024-09-19_16-12
-Building Havoc	Successful Build
-2024-09-19_16-18	2024-09-19_16-45
-Running Havoc Interface	Final Setup
-2024-09-19_16-46	2024-09-19_16-49
-Usage
-
-    After installation, close the terminal and reopen it to ensure all paths and dependencies are set.
-    To start using Havoc, navigate to the Havoc directory and follow the instructions in the official documentation.
 
 Contributing
 
