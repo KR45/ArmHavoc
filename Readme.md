@@ -28,7 +28,7 @@ Running Havoc Interface	Final Setup
 Usage
 
  After installation, close the terminal and reopen it to ensure all paths and dependencies are set.
-   To start using Havoc, navigate to the Havoc directory and follow the instructions in the official ![documentation](https://havocframework.com/docs/installation). 
+   To start using Havoc, navigate to the Havoc directory and follow the instructions in the official [documentation](https://havocframework.com/docs/installation). 
 
 Contributing
 
