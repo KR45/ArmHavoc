@@ -8,14 +8,14 @@ This script simplifies the installation of Havoc on Kali ARM, ensuring that all 
 
 
 
-Features
+## Features
 
 Automated Installation: The script handles all dependencies and environment setup, ensuring a seamless installation experience.
 Optimized for ARM: Designed specifically for Kali ARM devices, ensuring compatibility and efficiency.
 Dependency Management: Automatically installs required Go dependencies and compilers.
 Smart Build Handling: Checks if the necessary binaries already exist, skipping redundant build steps.
 
-Screenshots
+## Screenshots
 
 Below are some screenshots showcasing the installation process and the script in action.
 Installing Dependencies	Building Teamserver
@@ -25,15 +25,16 @@ Building Havoc	Successful Build
 Running Havoc Interface	Final Setup
 
 ![2024-09-19_16-46](https://github.com/user-attachments/assets/72b3fe09-6b60-45ca-a559-400de340b94a) ![2024-09-19_16-49](https://github.com/user-attachments/assets/879b0b04-8b62-4e65-b506-a13ceabba2e9)
-Usage
+![2024-09-19_17-11](https://github.com/user-attachments/assets/83ac8fa1-a5f5-45cd-a51e-d1537b61ae4d)
+
+
+
+## Usage
 
  After installation, close the terminal and reopen it to ensure all paths and dependencies are set.
    To start using Havoc, navigate to the Havoc directory and follow the instructions in the official [documentation](https://havocframework.com/docs/installation). 
 
-Contributing
+## Contributing
 
 Feel free to contribute to this project by opening issues or submitting pull requests. Contributions are welcome, especially around improving compatibility with other ARM distributions or adding additional automation features.
 
-Contributing
-
-Feel free to contribute to this project by opening issues or submitting pull requests. Contributions are welcome, especially around improving compatibility with other ARM distributions or adding additional automation features.
