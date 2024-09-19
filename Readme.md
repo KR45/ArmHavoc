@@ -10,10 +10,10 @@ This script simplifies the installation of Havoc on Kali ARM, ensuring that all 
 
 ## Features
 
-Automated Installation: The script handles all dependencies and environment setup, ensuring a seamless installation experience.
-Optimized for ARM: Designed specifically for Kali ARM devices, ensuring compatibility and efficiency.
-Dependency Management: Automatically installs required Go dependencies and compilers.
-Smart Build Handling: Checks if the necessary binaries already exist, skipping redundant build steps.
+- Automated Installation: The script handles all dependencies and environment setup, ensuring a seamless installation experience.
+- Optimized for ARM: Designed specifically for Kali ARM devices, ensuring compatibility and efficiency.
+- Dependency Management: Automatically installs required dependencies and compilers.
+- Smart Build Handling: Checks if the necessary binaries already exist, skipping redundant build steps.
 
 ## Screenshots
 
