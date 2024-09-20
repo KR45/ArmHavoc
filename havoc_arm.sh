@@ -64,7 +64,8 @@ hav=(
     "libgtest-dev"
     "libspdlog-dev"
     "libboost-all-dev"
-    "libncurses5-dev"
+    #"libncurses5-dev" uncomment this if you get issue for new version below is compitable
+    "libncurses-dev"
     "libgdbm-dev"
     "libssl-dev"
     "libreadline-dev"
@@ -128,47 +129,49 @@ install_pyenv() {
         echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
         echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
         echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init --path)"\nfi' >> ~/.zshrc
-        source .zshrc
+        #exporting to current shell session
+        export PYENV_ROOT="$HOME/.pyenv"
+        export PATH="$PYENV_ROOT/bin:$PATH"
+        eval "$(pyenv init --path)"
     fi
 
-    # Ensure the shell is properly set and reload it
-    [ -z "$SHELL" ] && SHELL=/usr/bin/zsh
-    exec $SHELL
 }
 
 py=$(python3 --version 2>&1 | awk '{print $2}')
 required_version="3.10"
-
-if [ "$py_version" == "$required_version" ]; then
-    echo -e "${GREEN}Python version is $required_version. Good to go!!!${ENDCOLOR}"
+if command -v pyenv >/dev/null 2>&1; then
+    echo -e "${GREEN}pyenv is already installed. Skipping installation.${ENDCOLOR}"
 else
-    echo -e "${BLUE}Current Python version is $py_version.${ENDCOLOR}"
-    echo -e "${BLUE}Do you want to install Python 3.10? (y/n)${ENDCOLOR}"
-    read -r response
-    if [[ "$response" =~ ^[Yy]$ ]]; then
-        install_pyenv
+    if [ "$py" = "$required_version" ]; then
+        echo -e "${GREEN}Python version is $required_version. Good to go!!!${ENDCOLOR}"
     else
-        echo -e "${RED}Python 3.10 installation skipped.${ENDCOLOR}"
+        echo -e "${BLUE}Current Python version is $py_version.${ENDCOLOR}"
+        echo -e "${BLUE}Do you want to install Python 3.10? (y/n)${ENDCOLOR}"
+        read -r response
+        if [[ "$response" =~ ^[Yy]$ ]]; then
+            install_pyenv
+        else
+            echo -e "${RED}Python 3.10 installation skipped.${ENDCOLOR}"
+        fi
     fi
 fi
-
 #clonning havoc
 # Clone Havoc repository if not already present
 if [ ! -d "Havoc" ]; then
     git clone https://github.com/HavocFramework/Havoc.git
 fi
 
-cd Havoc
 
-# Installing Havoc Go dependencies
-cd teamserver
-go mod download golang.org/x/sys
-go mod download github.com/ugorji/go
-cd ..
 
 # Check if the teamserver binary (or the target build file) already exists
 if [ ! -f "Havoc/havoc" ]; then
     echo "Building teamserver binary..."
+    cd Havoc
+    # Installing Havoc Go dependencies
+    cd teamserver
+    go mod download golang.org/x/sys
+    go mod download github.com/ugorji/go
+    cd ..
     make ts-build
 else
     echo "Teamserver binary already exists, skipping build."
@@ -203,22 +206,27 @@ check_system_requirements() {
     # Check if RAM is less than 4 GB
     if (( $(echo "$total_ram < 4" | bc -l) )); then
         echo -e "${RED}Warning: RAM is less than 4 GB. Building may be slow.${ENDCOLOR}"
-        build_client_binary
+        if [ ! -f "Havoc/client/Havoc" ]; then
+            echo "Building teamserver binary..."
+            build_client_binary
+        else
+            echo "Teamserver binary already exists, skipping build."
+        fi
+       
     fi
 
     # Check if CPU cores are less than 4
     if [ "$cpu_cores" -lt 4 ]; then
         echo -e "${RED}Warning: Less than 4 CPU cores detected. Building may be slow.${ENDCOLOR}"
-        build_client_binary
+        if [ ! -f "Havoc/client/Havoc" ]; then
+            echo "Building teamserver binary..."
+            build_client_binary
+        else
+            echo "Teamserver binary already exists, skipping build."
+        fi
+       
     fi
 }
 
 # Check system requirements
 check_system_requirements
-
-
-
-
-
-
-
