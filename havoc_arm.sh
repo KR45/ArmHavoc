@@ -203,29 +203,25 @@ check_system_requirements() {
     echo -e "Total RAM: ${total_ram} GB"
     echo -e "CPU Cores: ${cpu_cores}"
 
-    # Check if RAM is less than 4 GB
+    # Check if RAM is less than 4 GB or CPU cores are less than 4
+if (( $(echo "$total_ram < 4" | bc -l) )) || [ "$cpu_cores" -lt 4 ]; then
     if (( $(echo "$total_ram < 4" | bc -l) )); then
         echo -e "${RED}Warning: RAM is less than 4 GB. Building may be slow.${ENDCOLOR}"
-        if [ ! -f "Havoc/client/Havoc" ]; then
-            echo "Building teamserver binary..."
-            build_client_binary
-        else
-            echo "Teamserver binary already exists, skipping build."
-        fi
-       
     fi
 
-    # Check if CPU cores are less than 4
     if [ "$cpu_cores" -lt 4 ]; then
         echo -e "${RED}Warning: Less than 4 CPU cores detected. Building may be slow.${ENDCOLOR}"
-        if [ ! -f "Havoc/client/Havoc" ]; then
-            echo "Building teamserver binary..."
-            build_client_binary
-        else
-            echo "Teamserver binary already exists, skipping build."
-        fi
-       
     fi
+
+    # Build teamserver binary only if it doesn't exist
+    if [ ! -f "Havoc/client/Havoc" ]; then
+        echo "Building teamserver binary..."
+        build_client_binary
+    else
+        echo "Teamserver binary already exists, skipping build."
+    fi
+fi
+
 }
 
 # Check system requirements
