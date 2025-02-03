@@ -219,6 +219,7 @@ function check_system_requirements_and_build () {
         if [ ! -f "Havoc/havoc" ];
         then
             print_blue "Building teamserver binary..."
+            build_teamserver_binary
         fi
 
         # Build client binary only if it doesn't exist
