@@ -25,11 +25,8 @@ print_blue "                                                            "
 
 print_green "Created by KR45 (ezio)"
 
-if [[ "${EUID}" -ne 0 ]];
-then
-    print_red "Please run as root"
-    exit 1
-fi
+# Ask for sudo password if not already cached; and check if user has sudo rights
+sudo -v &>/dev/null
 
 #installing requried packages 
 print_blue "Checking packages"
