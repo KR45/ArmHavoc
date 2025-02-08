@@ -223,8 +223,7 @@ function check_system_requirements_and_build () {
     print_blue "Select the branch to clone:"
     echo "1) Stable (main)"
     echo "2) Development (dev)"
-    echo "3) Experimental (feature)"
-    read -p "Enter your choice (1/2/3): " choice
+    read -p "Enter your choice (1/2): " choice
 
     if [ "$choice" -eq 1 ]; then
         clone_repo "main"
