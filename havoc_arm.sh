@@ -17,6 +17,18 @@ function print_red () {
     echo -e "${BLUE}${1}${ENDCOLOR}"
 }
 
+function clone_repo() {
+    local branch=$1
+    if [ ! -d "Havoc" ]; then
+        echo "Cloning Havoc repository (branch: $branch)..."
+        git clone -b "$branch" https://github.com/HavocFramework/Havoc.git Havoc
+        echo "Clone completed!"
+    else
+        echo "Havoc directory already exists. Skipping clone."
+    fi
+}
+
+
 print_blue "_  _   ___   _____   ___   ___ ___  ___     _   ___ __  __ "
 print_blue "| || | /_\ \ / / _ \ / __| | __/ _ \| _ \   /_\ | _ \  \/  |"
 print_blue "| __ |/ _ \ V / (_) | (__  | _| (_) |   /  / _ \|   / |\/| |"
@@ -74,6 +86,7 @@ function check_package() {
     if [ $? -eq 0 ]; 
     then
        print_green "Package ${1} is already installed."
+       echo " "
     else
         print_red "Package ${1} is not installed."
         print_blue "Installing..."
@@ -85,6 +98,7 @@ function install_pyenv() {
     # Check if pyenv is already installed and configured in .zshrc
     if command -v pyenv >/dev/null 2>&1 && grep -q 'export PYENV_ROOT="$HOME/.pyenv"' ~/.zshrc; then
         print_blue "pyenv is already installed and configured. Skipping installation."
+        echo " "
         return 0
     fi
 
@@ -187,6 +201,7 @@ function check_system_requirements_and_build () {
         if command -v pyenv >/dev/null 2>&1; 
         then
             print_green "pyenv is already installed. Skipping installation."
+            echo ""
         else
             if [ "$py" = "$required_version" ]; 
             then
@@ -205,12 +220,27 @@ function check_system_requirements_and_build () {
         fi
 
         # Clone Havoc repository if not already present
-        if [ ! -d "Havoc" ]; 
-        then
-            git clone --recurse -b dev https://github.com/HavocFramework/Havoc.git Havoc
-        fi
+    print_blue "Select the branch to clone:"
+    echo "1) Stable (main)"
+    echo "2) Development (dev)"
+    echo "3) Experimental (feature)"
+    read -p "Enter your choice (1/2/3): " choice
+
+    if [ "$choice" -eq 1 ]; then
+        clone_repo "main"
+    elif [ "$choice" -eq 2 ]; then
+        print_red "Warning !! May be unstable"
+        clone_repo "dev"
+    elif [ "$choice" -eq 3 ]; then
+        clone_repo "feature"
+    else
+        echo "Invalid selection. Exiting..."
+        exit 1
+    fi
 
         cd Havoc
+        #hotpatch for CVE-2024-41570
+        sed -i '/case COMMAND_SOCKET:/,/return true/d' teamserver/pkg/agent/agent.go
 
         # Check if the teamserver binary (or the target build file) already exists
         if [ ! -f "Havoc/havoc" ];
@@ -228,6 +258,7 @@ function check_system_requirements_and_build () {
             print_blue "Client binary already exists, skipping build."
         fi
     fi
+
 }
 
 # Check system requirements
